@@ -23,6 +23,7 @@ function DadosPessoais({aoEnviar, validarCPF}) {
                     setNome(event.target.value);
                 }}
                 id="nome"
+                required
                 label="Nome"
                 variant="outlined"
                 margin="normal"
@@ -35,6 +36,7 @@ function DadosPessoais({aoEnviar, validarCPF}) {
                     setSobrenome(event.target.value);
                 }}
                 id="sobrenome"
+                required
                 label="Sobrenome"
                 variant="outlined"
                 margin="normal"
@@ -55,6 +57,7 @@ function DadosPessoais({aoEnviar, validarCPF}) {
                 helperText={errors.cpf.texto}
                 id="cpf"
                 label="CPF"
+                required
                 variant="outlined"
                 margin="normal"
                 fullWidth

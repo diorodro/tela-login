@@ -2,28 +2,24 @@ import React, { useState } from 'react';
 import DadosPessoais from './DadosPessoais';
 import DadosEntrega from './DadosEntrega';
 import DadosUsuario from './DadosUsuario';
-import { Typography } from '@material-ui/core';
 
 function FormularioCadastro({ aoEnviar, validarCPF }) {
 
-    const [etapaAtual, setEtapaAtual] = useState(1);
+    const [etapaAtual, setEtapaAtual] = useState(0);
 
-    function formularioAtual(etapaAtual) {
-        switch (etapaAtual) {
-            case 0:
-                return <DadosUsuario />;
-            case 1:
-                return <DadosPessoais aoEnviar={aoEnviar} validarCPF={validarCPF}/>;
-            case 2:
-                return <DadosEntrega/>;
-            default:
-               return <Typography>ERRO!</Typography>
-        }
+    const formularios = [
+        <DadosUsuario aoEnviar={proximo} />,
+        <DadosPessoais aoEnviar={proximo} validarCPF={validarCPF} />,
+        <DadosEntrega aoEnviar={aoEnviar} />
+    ];
+
+    function proximo() {
+        setEtapaAtual(etapaAtual + 1);
     }
 
     return (
         <>
-            {formularioAtual(etapaAtual)}
+            {formularios[etapaAtual]}
         </>
     );
 };
