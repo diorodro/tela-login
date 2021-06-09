@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FormularioCadastro from './components/FormularioCadastro/';
 import { Container, Typography } from '@material-ui/core';
 import { validarCPF, validarSenha, validarNome } from './models/cadastro';
+import ValidacoesCadastro from './contexts/ValidacoesCadastro';
 import 'fontsource-roboto';
 class App extends Component {
 
@@ -16,7 +17,9 @@ class App extends Component {
         >
           Formulário de Cadastro
         </Typography>
-        <FormularioCadastro aoEnviar={aoEnviarForm} validacoes={{ cpf: validarCPF, senha: validarSenha, nome: validarNome }} />
+        <ValidacoesCadastro.Provider value={{ cpf: validarCPF, senha: validarSenha, nome: validarNome }}>
+          <FormularioCadastro aoEnviar={aoEnviarForm} />
+        </ValidacoesCadastro.Provider>
       </Container>
     );
   }
